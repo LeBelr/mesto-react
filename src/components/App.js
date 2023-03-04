@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
@@ -7,6 +7,14 @@ import ImagePopup from "./ImagePopup.js";
 
 
 function App() {
+
+  // Хуки состояния для попапов
+
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   //Функции для смены состояния открытия попапов
 
@@ -37,14 +45,6 @@ function App() {
     setSelectedCard({});
   }
 
-  // Хуки состояния для попапов
-
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({})
-
   return (
     <>
       <div className="page">
@@ -63,7 +63,6 @@ function App() {
           title='Редактировать профиль'
           name='edit'
           isOpen={isEditProfilePopupOpen}
-          btnText='Сохранить'
           onClose={closeAllPopups}
         >
           <input id="profile-name-input" type="text" className="popup__input popup__input_type_edit-profile-name"
@@ -78,7 +77,6 @@ function App() {
           title='Новое место'
           name='add'
           isOpen={isAddPlacePopupOpen}
-          btnText='Сохранить'
           onClose={closeAllPopups}
         >
           <input id="card-name-input" type="text" className="popup__input popup__input_type_add-card-name" name="name"
@@ -93,7 +91,6 @@ function App() {
           title='Обновить Аватар'
           name='avatar'
           isOpen={isEditAvatarPopupOpen}
-          btnText='Сохранить'
           onClose={closeAllPopups}
         >
           <input id="avatar-input" type="url" className="popup__input popup__input_type_avatar" name="avatar"

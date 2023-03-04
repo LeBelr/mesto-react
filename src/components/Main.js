@@ -1,4 +1,4 @@
-import React from "react"
+import {useState, useEffect} from "react"
 import api from "../utils/api.js";
 import Card from "./Card.js";
 
@@ -6,14 +6,14 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
 
   // Хуки состояния для инфы пользователя и карточек
 
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([])
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([])
 
   // Хук для запроса инфы пользователя и карточек
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo()
       .then((data) => {
         setUserName(data.name);
